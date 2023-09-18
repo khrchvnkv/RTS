@@ -5,7 +5,7 @@ using VContainer;
 
 namespace Common.Infrastructure
 {
-    public class GameBootstrapper : MonoBehaviour
+    public sealed class GameBootstrapper : MonoBehaviour
     {
         private GameStateMachine _gameStateMachine;
         

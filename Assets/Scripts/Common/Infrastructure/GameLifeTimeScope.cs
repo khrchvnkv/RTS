@@ -15,7 +15,7 @@ using VContainer.Unity;
 
 namespace Common.Infrastructure
 {
-    public class GameLifeTimeScope : LifetimeScope
+    public sealed class GameLifeTimeScope : LifetimeScope
     {
         [SerializeField] private GameObject _eventSystemPrefab;
 

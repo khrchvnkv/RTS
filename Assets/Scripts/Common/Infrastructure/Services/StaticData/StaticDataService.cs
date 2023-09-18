@@ -3,7 +3,7 @@ using Common.StaticData;
 
 namespace Common.Infrastructure.Services.StaticData
 {
-    public class StaticDataService : IStaticDataService
+    public sealed class StaticDataService : IStaticDataService
     {
         private readonly IAssetProvider _assetProvider;
         

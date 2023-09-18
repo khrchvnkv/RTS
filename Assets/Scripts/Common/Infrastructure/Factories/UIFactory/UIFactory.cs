@@ -7,7 +7,7 @@ using VContainer.Unity;
 
 namespace Common.Infrastructure.Factories.UIFactory
 {
-    public class UIFactory : IUIFactory
+    public sealed class UIFactory : IUIFactory
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IDontDestroyOnLoadCreator _dontDestroyOnLoadCreator;

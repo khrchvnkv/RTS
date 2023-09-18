@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Common.Infrastructure.Services.Coroutines
 {
-    public class CoroutineRunner : MonoBehaviour, ICoroutineRunner
+    public sealed class CoroutineRunner : MonoBehaviour, ICoroutineRunner
     {
         public void StopCoroutineSafe(Coroutine coroutine)
         {

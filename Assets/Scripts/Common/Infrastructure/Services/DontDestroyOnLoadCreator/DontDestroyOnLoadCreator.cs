@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Common.Infrastructure.Services.DontDestroyOnLoadCreator
 {
-    public class DontDestroyOnLoadCreator : MonoBehaviour, IDontDestroyOnLoadCreator
+    public sealed class DontDestroyOnLoadCreator : MonoBehaviour, IDontDestroyOnLoadCreator
     {
         public GameObject MarkAsDontDestroy(GameObject instance)
         {

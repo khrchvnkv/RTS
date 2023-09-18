@@ -18,8 +18,7 @@ namespace Common.Infrastructure.StateMachine.States
             _sceneLoader.LoadScene(payload, OnLoaded);
         }
         public override void Exit()
-        {
-        }
+        { }
         private void OnLoaded() => _uiFactory.HideLoadingCurtain();
     }
 }

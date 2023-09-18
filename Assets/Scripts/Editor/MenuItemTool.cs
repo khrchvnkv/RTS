@@ -1,5 +1,7 @@
+using Common.StaticData;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
 
 namespace Editor
 {
@@ -10,14 +12,15 @@ namespace Editor
         {
             EditorSceneManager.OpenScene("Assets/Scenes/Bootstrap.unity", OpenSceneMode.Single);
         }
+        
         [MenuItem("Shortcuts/StaticData/Open GameStaticData")]
         public static void OpenGameStaticData()
         {
-            //GameStaticData staticData = Resources.Load<GameStaticData>("GameStaticData");
+            GameStaticData staticData = Resources.Load<GameStaticData>("StaticData/GameStaticData");
 
-            //Selection.activeObject = staticData;
-
-            //EditorGUIUtility.PingObject(staticData);
+            Selection.activeObject = staticData;
+            
+            EditorGUIUtility.PingObject(staticData);
         }
     }
 }

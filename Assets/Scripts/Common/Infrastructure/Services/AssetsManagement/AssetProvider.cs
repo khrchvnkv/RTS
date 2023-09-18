@@ -3,10 +3,12 @@ using UnityEngine;
 
 namespace Common.Infrastructure.Services.AssetsManagement
 {
-    public class AssetProvider : IAssetProvider
+    public sealed class AssetProvider : IAssetProvider
     {
         private const string GAME_STATIC_DATA_PATH = "StaticData/GameStaticData";
 
-        public GameStaticData LoadGameStaticData() => Resources.Load<GameStaticData>(GAME_STATIC_DATA_PATH);
+        public GameStaticData LoadGameStaticData() => Load<GameStaticData>(GAME_STATIC_DATA_PATH);
+        
+        private T Load<T>(in string path) where T : Object => Resources.Load<T>(path);
     }
 }
