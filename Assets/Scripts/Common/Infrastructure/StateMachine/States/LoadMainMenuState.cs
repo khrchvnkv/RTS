@@ -1,5 +1,6 @@
 using Common.Infrastructure.Factories.UIFactory;
 using Common.Infrastructure.Services.SceneLoading;
+using Common.UnityLogic.UI.Windows.MainMenu;
 
 namespace Common.Infrastructure.StateMachine.States
 {
@@ -19,6 +20,10 @@ namespace Common.Infrastructure.StateMachine.States
         }
         public override void Exit()
         { }
-        private void OnLoaded() => _uiFactory.HideLoadingCurtain();
+        private void OnLoaded()
+        {
+            _uiFactory.ShowWindow(new MainMenuWindowData());
+            _uiFactory.HideLoadingCurtain();
+        }
     }
 }

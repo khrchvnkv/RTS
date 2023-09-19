@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217a551c1a9b41ba9a4483068a896beb, type: 3}
   m_Name: WindowStaticData
   m_EditorClassIdentifier: 
-  <UIRoot>k__BackingField: {fileID: 76519567609812100, guid: 1ed048f580d8d4bd4940ff23806841ef, type: 3}
+  <UIRoot>k__BackingField: {fileID: 3632260698325425974, guid: 1ed048f580d8d4bd4940ff23806841ef, type: 3}
   <LoadingCurtainPrefab>k__BackingField: {fileID: 8204612441645064952, guid: e705181151c6243a2be7eac68bcb9791, type: 3}

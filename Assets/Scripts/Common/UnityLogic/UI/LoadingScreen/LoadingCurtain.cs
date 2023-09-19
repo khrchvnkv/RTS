@@ -3,7 +3,7 @@ using Common.Infrastructure.Services.Coroutines;
 using UnityEngine;
 using VContainer;
 
-namespace Common.UnityLogic.LoadingCurtain
+namespace Common.UnityLogic.UI.LoadingScreen
 {
     public class LoadingCurtain : MonoBehaviour
     {
