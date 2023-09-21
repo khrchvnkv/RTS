@@ -1,3 +1,4 @@
+using Common.Ecs;
 using Common.Infrastructure.Factories.UIFactory;
 using Common.Infrastructure.Services.AssetsManagement;
 using Common.Infrastructure.Services.Coroutines;
@@ -6,6 +7,7 @@ using Common.Infrastructure.Services.Progress;
 using Common.Infrastructure.Services.SaveLoad;
 using Common.Infrastructure.Services.SceneLoading;
 using Common.Infrastructure.Services.StaticData;
+using Common.Infrastructure.Services.UpdateBehaviour;
 using Common.Infrastructure.StateMachine;
 using Common.Infrastructure.StateMachine.States;
 using UnityEngine;
@@ -27,6 +29,7 @@ namespace Common.Infrastructure
         private GameBootstrapper _bootstrapper;
         private DontDestroyOnLoadCreator _dontDestroyOnLoadCreator;
         private CoroutineRunner _coroutineRunner;
+        private UpdateBehaviour _updateBehaviour;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -59,6 +62,10 @@ namespace Common.Infrastructure
             // Coroutine Runner
             _coroutineRunner = new GameObject("CoroutineRunner").AddComponent<CoroutineRunner>();
             _coroutineRunner.transform.SetParent(_servicesRoot);
+            
+            // Update Behaviour
+            _updateBehaviour = new GameObject("UpdateBehaviour").AddComponent<UpdateBehaviour>();
+            _updateBehaviour.transform.SetParent(_servicesRoot);
 
             // Event System
             var eventSystem = Instantiate(_eventSystemPrefab, _gameLifetimeScope.transform);
@@ -71,10 +78,12 @@ namespace Common.Infrastructure
             _containerBuilder.Register<ISaveLoadService, SaveLoadService>(Lifetime.Singleton);
             _containerBuilder.Register<IPersistentProgressService, PersistentProgressService>(Lifetime.Singleton);
             _containerBuilder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
+            _containerBuilder.Register<EcsWorld, EcsWorld>(Lifetime.Singleton);
 
             _containerBuilder.RegisterInstance(_bootstrapper);
             _containerBuilder.RegisterInstance<IDontDestroyOnLoadCreator>(_dontDestroyOnLoadCreator);
             _containerBuilder.RegisterInstance<ICoroutineRunner>(_coroutineRunner);
+            _containerBuilder.RegisterInstance<IUpdateBehaviour>(_updateBehaviour);
         }
         private void BindGameStateMachine()
         {

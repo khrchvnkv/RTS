@@ -6,7 +6,7 @@ namespace Common
         {
             public const string InitialScene = "Bootstrap";
             public const string MainMenuScene = "MainMenuScene";
-            public const string LoadLevelScene = "GameScene";
+            public const string GameScene = "GameScene";
         }
     }
 }

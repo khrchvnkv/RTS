@@ -3,7 +3,6 @@ using Common.Infrastructure.Services.AssetsManagement;
 using Common.Infrastructure.Services.DontDestroyOnLoadCreator;
 using Common.Infrastructure.Services.StaticData;
 using Common.Infrastructure.WindowsManagement;
-using Common.UnityLogic.UI.LoadingScreen;
 using Common.UnityLogic.UI.Windows;
 using UnityEngine;
 using VContainer;

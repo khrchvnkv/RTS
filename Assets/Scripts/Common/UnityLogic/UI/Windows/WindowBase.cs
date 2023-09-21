@@ -10,11 +10,12 @@ namespace Common.UnityLogic.UI.Windows
         public void Show(IWindowData windowData)
         {
             WindowData = (TData)windowData;
-            PrepareForShowing();
+            Subscribe();
             gameObject.SetActive(true);
         }
         public void Hide()
         {
+            Unsubscribe();
             if (WindowData.DestroyOnClosing)
             {
                 Destroy(gameObject);
@@ -26,6 +27,7 @@ namespace Common.UnityLogic.UI.Windows
 
             WindowData = default;
         }
-        protected virtual void PrepareForShowing() { }
+        protected virtual void Subscribe() { }
+        protected virtual void Unsubscribe() { }
     }
 }
