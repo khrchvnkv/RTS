@@ -8,6 +8,6 @@ namespace Common.Infrastructure.Factories.UIFactory
         void ShowLoadingCurtain();
         void HideLoadingCurtain();
         void ShowWindow<TData>(TData data) where TData : struct, IWindowData;
-        void Hide<TData>(TData data) where TData : struct, IWindowData;
+        public void Hide<TData>(TData data) where TData : struct, IWindowData;
     }
 }

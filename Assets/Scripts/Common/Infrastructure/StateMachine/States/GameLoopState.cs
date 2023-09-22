@@ -14,11 +14,7 @@ namespace Common.Infrastructure.StateMachine.States
             _uiFactory = uiFactory;
             _ecsWorld = ecsWorld;
         }
-        public void Enter()
-        {
-            _ecsWorld.Init();
-            _uiFactory.HideLoadingCurtain();
-        }
+        public void Enter() => _uiFactory.HideLoadingCurtain();
         public override void Exit()
         { }
         public void Dispose() => _ecsWorld?.Dispose();

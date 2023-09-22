@@ -2,7 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Common.Ecs.Commands;
+using Common.Ecs.Components.Animation;
+using Common.Ecs.Components.Movement;
 using Common.Ecs.Core;
+using Common.Ecs.Systems;
 using Common.Infrastructure.Services.UpdateBehaviour;
 
 namespace Common.Ecs
@@ -31,14 +35,23 @@ namespace Common.Ecs
             
             BindComponents();
             BindSystems();
+            
+            Install();
         }
         private void BindComponents()
         {
-            //BindComponent<Component>();
+            BindComponent<MoveStateComponent>();
+            BindComponent<MoveSpeedComponent>();
+            BindComponent<MoveRotationComponent>();
+            BindComponent<TransformComponent>();
+            BindComponent<AnimatorComponent>();
+            BindComponent<MoveToPositionCommand>();
         }
         private void BindSystems()
         {
-            //BindSystem<System>();
+            BindSystem<MovementSystem>();
+            BindSystem<MoveToPositionSystem>();
+            BindSystem<MoveAnimationSystem>();
         }
         public int CreateEntity()
         {
@@ -79,11 +92,23 @@ namespace Common.Ecs
             var pool = (ComponentPool<T>)_componentPools[typeof(T)];
             pool.SetComponent(entity, ref component);
         }
-        public void BindComponent<T>() where T : struct
+        public void Dispose()
+        {
+            _updateBehaviour.OnUpdate -= Update;
+            _updateBehaviour.OnFixedUpdate += FixedUpdate;
+            _updateBehaviour.OnLateUpdate += LateUpdate;
+            
+            _systems.Clear();
+            _updateSystems.Clear();
+            _fixedUpdateSystems.Clear();
+            _componentPools.Clear();
+            _entities.Clear();
+        } 
+        private void BindComponent<T>() where T : struct
         {
             _componentPools[typeof(T)] = new ComponentPool<T>();
         }
-        public T BindSystem<T>() where T : ISystem, new()
+        private T BindSystem<T>() where T : ISystem, new()
         {
             var system = new T();
             _systems.Add(system);
@@ -105,14 +130,14 @@ namespace Common.Ecs
 
             return system;
         }
-        public void Install()
+        private void Install()
         {
             foreach (var system in _systems)
             {
                 InstallSystem(system);
             }
         }
-        public void InstallSystem(ISystem system)
+        private void InstallSystem(ISystem system)
         {
             Type systemType = system.GetType();
             var fields = systemType.GetFields(
@@ -128,18 +153,6 @@ namespace Common.Ecs
                     field.SetValue(system, componentPool);
                 }
             }
-        }
-        public void Dispose()
-        {
-            _updateBehaviour.OnUpdate -= Update;
-            _updateBehaviour.OnFixedUpdate += FixedUpdate;
-            _updateBehaviour.OnLateUpdate += LateUpdate;
-            
-            _systems.Clear();
-            _updateSystems.Clear();
-            _fixedUpdateSystems.Clear();
-            _componentPools.Clear();
-            _entities.Clear();
         }
         private void Update()
         {

@@ -6,5 +6,6 @@ namespace Common.StaticData
     public class GameStaticData : ScriptableObject
     {
         [field: SerializeField] public WindowStaticData WindowStaticData { get; private set; }
+        [field: SerializeField] public CharacterStaticData CharacterStaticData { get; private set; }
     }
 }

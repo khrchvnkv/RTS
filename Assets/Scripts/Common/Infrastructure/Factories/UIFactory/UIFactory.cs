@@ -7,6 +7,7 @@ using Common.UnityLogic.UI.Windows;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using Object = UnityEngine.Object;
 
 namespace Common.Infrastructure.Factories.UIFactory
 {

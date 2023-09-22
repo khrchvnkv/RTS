@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GameStaticData
   m_EditorClassIdentifier: 
   <WindowStaticData>k__BackingField: {fileID: 11400000, guid: b8e492c30eec74b47bb2b1dd57bad5dd, type: 2}
+  <CharacterStaticData>k__BackingField: {fileID: 11400000, guid: 8e38090973dcf4694b64dc2329adbfcb, type: 2}

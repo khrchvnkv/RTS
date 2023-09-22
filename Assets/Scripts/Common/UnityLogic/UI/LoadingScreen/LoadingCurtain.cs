@@ -7,7 +7,7 @@ namespace Common.UnityLogic.UI.LoadingScreen
 {
     public class LoadingCurtain : MonoBehaviour
     {
-        private const float FADE_SPEED = 0.1f;
+        private const float FADE_SPEED = 1.5f;
 
         [SerializeField] private CanvasGroup _canvasGroup;
         
@@ -33,11 +33,10 @@ namespace Common.UnityLogic.UI.LoadingScreen
         private void StopCoroutine() => _coroutineRunner.StopCoroutineSafe(_coroutine);
         private IEnumerator FadeCoroutine()
         {
-            var delay = new WaitForSeconds(FADE_SPEED);
             while (_canvasGroup.alpha > 0.0f)
             {
-                _canvasGroup.alpha -= FADE_SPEED;
-                yield return delay;
+                _canvasGroup.alpha -= FADE_SPEED * Time.deltaTime;
+                yield return null;
             }
             _canvasGroup.gameObject.SetActive(false);
         }

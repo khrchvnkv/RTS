@@ -1,4 +1,5 @@
 using Common.Ecs;
+using Common.Infrastructure.Factories.MobFactory;
 using Common.Infrastructure.Factories.UIFactory;
 using Common.Infrastructure.Services.AssetsManagement;
 using Common.Infrastructure.Services.Coroutines;
@@ -96,6 +97,7 @@ namespace Common.Infrastructure
         private void BindFactories()
         {
             _containerBuilder.Register<IUIFactory, UIFactory>(Lifetime.Singleton);
+            _containerBuilder.Register<IMobFactory, MobFactory>(Lifetime.Singleton);
         }
     }
 }

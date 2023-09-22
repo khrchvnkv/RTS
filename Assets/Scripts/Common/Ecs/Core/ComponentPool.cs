@@ -2,7 +2,7 @@ using System;
 
 namespace Common.Ecs.Core
 {
-    public class ComponentPool<T> : IComponentPool
+    public class ComponentPool<T> : IComponentPool where T : struct
     {
         private struct Component
         {

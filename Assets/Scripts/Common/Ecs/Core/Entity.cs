@@ -8,8 +8,13 @@ namespace Common.Ecs.Core
     {
         public int Id { get; private set; }
 
-        [Inject] private EcsWorld _ecsWorld;
-        
+        private EcsWorld _ecsWorld;
+
+        protected void Setup(EcsWorld ecsWorld)
+        {
+            _ecsWorld = ecsWorld;
+            Id = _ecsWorld.CreateEntity();
+        }
         public void SetData<T>(T component) where T : struct => _ecsWorld.SetComponent(Id, ref component);
         public ref T GetData<T>() where T : struct => ref _ecsWorld.GetComponent<T>(Id);
         public void Dispose()

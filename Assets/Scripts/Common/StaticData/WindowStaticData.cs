@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Common.StaticData
 {
-    [CreateAssetMenu(menuName = nameof(WindowStaticData), fileName = nameof(WindowStaticData), order = 0)]
+    [CreateAssetMenu(fileName = "WindowStaticData", menuName = "Static Data/WindowStaticData")]
     public sealed class WindowStaticData : ScriptableObject
     {
         [field: SerializeField] public UIRoot UIRoot { get; private set; }
