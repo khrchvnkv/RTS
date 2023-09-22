@@ -1,4 +1,4 @@
-using Common.Infrastructure.Factories.MobFactory;
+using Common.Infrastructure.Factories.CharacterFactory;
 using UnityEngine;
 using VContainer;
 
@@ -8,15 +8,15 @@ namespace Common.UnityLogic.Character.Spawner
     {
         [SerializeField] private Transform _spawnPoint;
 
-        private IMobFactory _mobFactory;
+        private ICharacterFactory _characterFactory;
 
         [Inject]
-        private void Construct(IMobFactory mobFactory)
+        private void Construct(ICharacterFactory characterFactory)
         {
-            _mobFactory = mobFactory;
+            _characterFactory = characterFactory;
             Init();
         }
-        private void Init() => _mobFactory.CreateMob(_spawnPoint);
+        private void Init() => _characterFactory.CreateCharacter(_spawnPoint);
         private void OnDrawGizmos()
         {
             if (_spawnPoint is not null)
