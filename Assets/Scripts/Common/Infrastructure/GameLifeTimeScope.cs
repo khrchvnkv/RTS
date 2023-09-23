@@ -4,6 +4,7 @@ using Common.Infrastructure.Factories.UIFactory;
 using Common.Infrastructure.Services.AssetsManagement;
 using Common.Infrastructure.Services.Coroutines;
 using Common.Infrastructure.Services.DontDestroyOnLoadCreator;
+using Common.Infrastructure.Services.Input;
 using Common.Infrastructure.Services.Progress;
 using Common.Infrastructure.Services.SaveLoad;
 using Common.Infrastructure.Services.SceneLoading;
@@ -79,6 +80,7 @@ namespace Common.Infrastructure
             _containerBuilder.Register<ISaveLoadService, SaveLoadService>(Lifetime.Singleton);
             _containerBuilder.Register<IPersistentProgressService, PersistentProgressService>(Lifetime.Singleton);
             _containerBuilder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
+            _containerBuilder.Register<IInputService, InputService>(Lifetime.Singleton);
             _containerBuilder.Register<EcsWorld, EcsWorld>(Lifetime.Singleton);
 
             _containerBuilder.RegisterInstance(_bootstrapper);

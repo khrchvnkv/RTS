@@ -1,22 +1,27 @@
-using System;
-using Common.Ecs;
 using Common.Infrastructure.Factories.UIFactory;
+using Common.Infrastructure.Services.Input;
+using UnityEngine;
 
 namespace Common.Infrastructure.StateMachine.States
 {
-    public class GameLoopState : State, IState, IDisposable
+    public class GameLoopState : State, IState
     {
         private readonly IUIFactory _uiFactory;
-        private readonly EcsWorld _ecsWorld;
+        private readonly IInputService _inputService;
 
-        public GameLoopState(IUIFactory uiFactory, EcsWorld ecsWorld)
+        public GameLoopState(IUIFactory uiFactory, IInputService inputService)
         {
             _uiFactory = uiFactory;
-            _ecsWorld = ecsWorld;
+            _inputService = inputService;
         }
-        public void Enter() => _uiFactory.HideLoadingCurtain();
+        public void Enter()
+        {
+            _uiFactory.HideLoadingCurtain();
+            _inputService.MovementInput.ActivateMovementInput(Camera.main);
+        }
         public override void Exit()
-        { }
-        public void Dispose() => _ecsWorld?.Dispose();
+        {
+            _inputService.MovementInput.DeactivateMovementInput();
+        }
     }
 }

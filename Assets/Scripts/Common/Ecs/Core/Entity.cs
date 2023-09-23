@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using VContainer;
 
 namespace Common.Ecs.Core
 {
@@ -17,7 +16,7 @@ namespace Common.Ecs.Core
         }
         public void SetData<T>(T component) where T : struct => _ecsWorld.SetComponent(Id, ref component);
         public ref T GetData<T>() where T : struct => ref _ecsWorld.GetComponent<T>(Id);
-        public void Dispose()
+        public virtual void Dispose()
         {
             _ecsWorld.DestroyEntity(Id);
             _ecsWorld = null;
